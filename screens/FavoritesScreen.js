@@ -15,18 +15,18 @@ export default function FavoritesScreen({ navigation }) {
   const loadFavorites = async () => {
     const user = await getUser();
     console.log("📦 FavoritesScreen user =", user);
-  
+
     if (!user) {
       navigation.navigate("Login");
       return;
     }
-  
-    const data = await getFavorites(user.id);
-    console.log("📦 Favorites loaded for", user.id, data);
-  
+
+    // ✅ USE EMAIL AS USER ID
+    const data = await getFavorites(user.email);
+    console.log("📦 Favorites loaded for", user.email, data);
+
     setFavorites(data);
   };
-  
 
   if (favorites.length === 0) {
     return (
